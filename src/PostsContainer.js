@@ -18,18 +18,19 @@ class PostsContainer extends React.Component{
               title
               body
               userId
+              id
             }
           }
         `
         query = query().text
 
         fetchQuery(query).then(data => {
-            this.setState({posts: data.data.getPosts})
+            this.setState({posts: data.data.getPosts.slice(0, 10)})
         })
     }
     render() {
         return (
-            <div style={{marginTop: "30px"}}>
+            <div style={{marginTop: "30px", width: "50%"}}>
                 <button onClick={this.onClick.bind(this)}>Get Posts</button>
                 <Posts posts={this.state.posts} />
             </div>

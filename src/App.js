@@ -4,6 +4,7 @@ import './App.css';
 import TemperatureContainer from './TemperatureContainer';
 import CurrentTimeContainer from './CurrentTimeContainer';
 import PostsContainer from './PostsContainer'
+import PhotosContainer from './PhotosContainer'
 
 class App extends Component {
   render() {
@@ -11,7 +12,10 @@ class App extends Component {
       <div className="App">
         <TemperatureContainer />
         <CurrentTimeContainer />
-        <PostsContainer />
+        <div style={{display: "flex"}}>
+          <PostsContainer />
+          <PhotosContainer />
+        </div>
       </div>
     );
   }

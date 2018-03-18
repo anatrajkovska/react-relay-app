@@ -1,16 +1,13 @@
 import React from 'react';
 
-function Post(props) {
-
+function Photo(props){
     return(
         <div style={{marginBottom: "20px"}}>
             <b>Title:</b> {props.data.title}
             <br />
-            <b>Body:</b> {props.data.body}
-            <br />            
-            <b>UserId:</b> {props.data.userId}     
+            <img src={props.data.thumbnailUrl} />
         </div>
     )
 }
 
-export default Post;
+export default Photo;
