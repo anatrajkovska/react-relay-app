@@ -1,8 +1,10 @@
 type Temp {
+    id: ID
     value: String
 }
 
 type Time {
+    id: ID
     time: String
 }
 
