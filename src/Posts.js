@@ -5,8 +5,8 @@ function Posts(props){
     return (
         <div>
             <h4>Posts:</h4>
-            {props.posts.map(post => {
-                return <Post data={post} key={post.id} />
+            {props.posts.map((post, index) => {
+                return <Post data={post} key={index} />
             })}
 
         </div>

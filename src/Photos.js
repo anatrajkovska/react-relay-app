@@ -5,8 +5,8 @@ function Photos(props){
     return(
         <div>
             <h4>Photos:</h4>
-            {props.photos.map(photo => {
-                return <Photo data={photo} key={photo.id} /> 
+            {props.photos.map((photo, index) => {
+                return <Photo data={photo} key={index} /> 
             })}
         </div>
     )

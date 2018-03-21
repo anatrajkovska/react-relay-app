@@ -5,6 +5,12 @@ import TemperatureContainer from './TemperatureContainer';
 import CurrentTimeContainer from './CurrentTimeContainer';
 import PostsContainer from './PostsContainer'
 import PhotosContainer from './PhotosContainer'
+import {
+  QueryRenderer,
+  graphql
+} from 'react-relay';
+
+import environment from './createRelayEnvironment';
 
 class App extends Component {
   render() {
@@ -12,10 +18,38 @@ class App extends Component {
       <div className="App">
         <TemperatureContainer />
         <CurrentTimeContainer />
-        <div style={{display: "flex"}}>
-          <PostsContainer />
-          <PhotosContainer />
-        </div>
+        <QueryRenderer
+          environment={environment}
+
+          query={graphql`
+            query AppQuery {
+              getPhotos {
+                title
+                thumbnailUrl
+              }
+              getPosts {
+                title
+                body
+                userId
+              }
+            }
+          `}
+
+          render={({error, props}) => {
+            if (error) {
+              return <div>{error.message}</div>;
+            } else if (props) {
+              console.log(props);
+              return (  
+              <div style={{display: "flex"}}>
+                <PostsContainer posts={props.getPosts.slice(0, 10)} />
+                <PhotosContainer photos={props.getPhotos.slice(0, 10)}/>
+              </div>)
+    
+            }
+            return <div>Loading</div>;
+          }}
+        />
       </div>
     );
   }
